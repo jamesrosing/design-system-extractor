@@ -1,0 +1,254 @@
+/**
+ * Vercel Design System - CSS Custom Properties
+ * Generated from https://vercel.com/
+ * Extracted: 2026-01-05
+ * 
+ * Light-mode-first developer platform with Geist font family.
+ * Black/white primary palette with blue accent (#0070f3). 4px base grid.
+ */
+
+:root {
+  /* ============================================
+     COLORS - Grayscale
+     ============================================ */
+  --vercel-gray-100: #fafafa;
+  --vercel-gray-200: #ebebeb;
+  --vercel-gray-300: #e6e6e6;
+  --vercel-gray-400: #999999;
+  --vercel-gray-500: #888888;
+  --vercel-gray-600: #666666;
+  --vercel-gray-700: #444444;
+  --vercel-gray-800: #333333;
+  --vercel-gray-900: #171717;
+  --vercel-gray-1000: #000000;
+  
+  /* ============================================
+     COLORS - Background
+     ============================================ */
+  --vercel-bg-primary: #ffffff;
+  --vercel-bg-secondary: #fafafa;
+  --vercel-bg-tertiary: #f5f5f5;
+  --vercel-bg-inverted: #171717;
+  
+  /* ============================================
+     COLORS - Blue (Accent)
+     ============================================ */
+  --vercel-blue-100: #ebf5ff;
+  --vercel-blue-200: #cce6ff;
+  --vercel-blue-500: #0070f3;
+  --vercel-blue-600: #0062d1;
+  --vercel-blue-700: #0068d6;
+  --vercel-blue-light: #52aeff;
+  
+  /* ============================================
+     COLORS - Semantic
+     ============================================ */
+  --vercel-success: #297a3a;
+  --vercel-success-light: #6cda75;
+  --vercel-success-dark: #398e4a;
+  
+  --vercel-error: #e5484d;
+  --vercel-error-dark: #cb2a2f;
+  
+  --vercel-warning: #ffb224;
+  --vercel-warning-dark: #ff990a;
+  
+  /* ============================================
+     COLORS - Additional Accents
+     ============================================ */
+  --vercel-purple: #7820bc;
+  --vercel-purple-light: #bf89ec;
+  --vercel-pink: #bd2864;
+  --vercel-pink-light: #ea3e83;
+  --vercel-teal: #067a6e;
+  --vercel-teal-light: #45dec5;
+  
+  /* ============================================
+     TYPOGRAPHY - Font Families
+     ============================================ */
+  --vercel-font-sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+  --vercel-font-mono: "Geist Mono", ui-monospace, "SF Mono", "Menlo", monospace;
+  
+  /* ============================================
+     TYPOGRAPHY - Font Weights
+     ============================================ */
+  --vercel-font-weight-normal: 400;
+  --vercel-font-weight-medium: 500;
+  --vercel-font-weight-semibold: 600;
+  --vercel-font-weight-bold: 700;
+  
+  /* ============================================
+     TYPOGRAPHY - Font Sizes
+     ============================================ */
+  --vercel-font-size-xs: 12px;
+  --vercel-font-size-sm: 13px;
+  --vercel-font-size-base: 14px;
+  --vercel-font-size-lg: 16px;
+  --vercel-font-size-xl: 18px;
+  --vercel-font-size-2xl: 20px;
+  --vercel-font-size-3xl: 24px;
+  --vercel-font-size-4xl: 32px;
+  --vercel-font-size-5xl: 40px;
+  --vercel-font-size-6xl: 48px;
+  
+  /* ============================================
+     TYPOGRAPHY - Line Heights
+     ============================================ */
+  --vercel-line-height-xs: 16px;
+  --vercel-line-height-sm: 20px;
+  --vercel-line-height-base: 20px;
+  --vercel-line-height-lg: 24px;
+  --vercel-line-height-xl: 28px;
+  --vercel-line-height-2xl: 32px;
+  --vercel-line-height-3xl: 40px;
+  --vercel-line-height-4xl: 48px;
+  --vercel-line-height-5xl: 56px;
+  
+  /* ============================================
+     TYPOGRAPHY - Letter Spacing
+     ============================================ */
+  --vercel-letter-spacing-tight: -0.96px;
+  --vercel-letter-spacing-display: -2.88px;
+  
+  /* ============================================
+     SPACING (4px grid)
+     ============================================ */
+  --vercel-space-0-5: 2px;
+  --vercel-space-1: 4px;
+  --vercel-space-1-5: 6px;
+  --vercel-space-2: 8px;
+  --vercel-space-2-5: 10px;
+  --vercel-space-3: 12px;
+  --vercel-space-3-5: 14px;
+  --vercel-space-4: 16px;
+  --vercel-space-5: 20px;
+  --vercel-space-6: 24px;
+  --vercel-space-8: 32px;
+  --vercel-space-9: 36px;
+  --vercel-space-10: 40px;
+  --vercel-space-11: 44px;
+  --vercel-space-12: 48px;
+  --vercel-space-16: 64px;
+  --vercel-space-24: 96px;
+  
+  /* ============================================
+     BORDER RADIUS
+     ============================================ */
+  --vercel-radius-sm: 4px;
+  --vercel-radius-default: 6px;
+  --vercel-radius-md: 8px;
+  --vercel-radius-lg: 12px;
+  --vercel-radius-xl: 16px;
+  --vercel-radius-2xl: 64px;
+  --vercel-radius-full: 9999px;
+  
+  /* ============================================
+     SHADOWS
+     ============================================ */
+  --vercel-shadow-sm: rgba(0, 0, 0, 0.04) 0px 2px 2px 0px;
+  --vercel-shadow-md: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px, rgba(0, 0, 0, 0.04) 0px 2px 2px 0px, rgb(250, 250, 250) 0px 0px 0px 1px;
+  --vercel-shadow-lg: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px, rgba(0, 0, 0, 0.04) 0px 2px 2px 0px, rgba(0, 0, 0, 0.04) 0px 8px 8px -8px, rgb(250, 250, 250) 0px 0px 0px 1px;
+  --vercel-shadow-border: rgb(235, 235, 235) 0px 0px 0px 1px;
+  --vercel-shadow-border-focus: rgb(235, 235, 235) 0px 0px 0px 1px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+  
+  /* ============================================
+     TRANSITIONS
+     ============================================ */
+  --vercel-duration-fast: 100ms;
+  --vercel-duration-normal: 150ms;
+  --vercel-duration-slow: 200ms;
+  --vercel-duration-slower: 300ms;
+  
+  --vercel-ease-default: cubic-bezier(0.33, 0.12, 0.15, 1);
+  --vercel-ease-bounce: cubic-bezier(0.31, 0.05, 0.43, 1.02);
+  --vercel-ease-smooth: cubic-bezier(0.39, 0.18, 0.17, 0.99);
+  
+  /* ============================================
+     LAYOUT
+     ============================================ */
+  --vercel-max-width-container: 1200px;
+  --vercel-max-width-content: 1080px;
+  --vercel-max-width-narrow: 720px;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes vercel-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes vercel-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes vercel-scale-in {
+  from { 
+    opacity: 0; 
+    transform: rotateX(-30deg) scale(0.9); 
+  }
+  to { 
+    opacity: 1; 
+    transform: rotateX(0deg) scale(1); 
+  }
+}
+
+@keyframes vercel-scale-out {
+  from { 
+    opacity: 1; 
+    transform: rotateX(0deg) scale(1); 
+  }
+  to { 
+    opacity: 0; 
+    transform: rotateX(-10deg) scale(0.95); 
+  }
+}
+
+@keyframes vercel-slide-from-bottom {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes vercel-slide-from-right {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes vercel-slide-in {
+  from { 
+    opacity: 0; 
+    transform: translateY(75%); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes vercel-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes vercel-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes vercel-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes vercel-bounce {
+  0%, 100% { 
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% { 
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}

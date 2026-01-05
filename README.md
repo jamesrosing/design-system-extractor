@@ -169,10 +169,10 @@ Skip live extraction for these popular designs:
 
 | Site | File | Character |
 |------|------|-----------|
-| DuChateau | `examples/extracted/duchateau.json` | Luxury editorial |
-| Linear | `examples/extracted/linear.json` | Clean, minimal SaaS (TODO) |
+| DuChateau | `examples/extracted/duchateau.json` | Luxury editorial, serif typography, warm neutrals |
+| Linear | `examples/extracted/linear.json` | Dark-mode SaaS, Inter Variable, indigo accent (#5e6ad2) |
+| Vercel | `examples/extracted/vercel.json` | Light-mode developer platform, Geist font, blue accent (#0070f3) |
 | Stripe | `examples/extracted/stripe.json` | Data-dense, professional (TODO) |
-| Vercel | `examples/extracted/vercel.json` | Developer-focused (TODO) |
 
 ## What Gets Extracted
 
@@ -235,6 +235,6 @@ PRs welcome! Ideas for improvement:
 - [x] CSS variables generator
 - [x] Project comparison with ΔE color matching
 - [x] Implementation plan generator
-- [ ] More pre-extracted references (Stripe, Vercel, Notion)
+- [ ] More pre-extracted references (Stripe, Notion, Tailwind)
 - [ ] Figma export format
 - [ ] Automated PR generation with before/after screenshots

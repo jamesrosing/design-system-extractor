@@ -1,0 +1,210 @@
+{
+  "meta": {
+    "url": "https://vercel.com/",
+    "title": "Vercel: Build and deploy the best web experiences with the AI Cloud",
+    "extractedAt": "2026-01-05T21:07:49.255Z",
+    "viewport": { "width": 1251, "height": 1278 },
+    "designCharacter": "Light-mode-first developer platform. Clean, minimal with strong black/white contrast. Geist font family (sans + mono). Blue accent (#0070f3). Subtle shadows and smooth transitions. 4px base grid."
+  },
+  "colors": {
+    "cssVariables": {
+      "--banner-height": "0px",
+      "--header-height": "64px",
+      "--vh100-offset": "calc(var(--header-height) + var(--banner-height))"
+    },
+    "palette": [
+      { "value": "#171717", "count": 4637, "role": "text-primary" },
+      { "value": "#666666", "count": 624, "role": "text-secondary" },
+      { "value": "#ffffff", "count": 122, "role": "background" },
+      { "value": "#000000", "count": 103, "role": "text-emphasis" },
+      { "value": "#808080", "count": 72, "role": "text-tertiary" },
+      { "value": "#ebebeb", "count": 40, "role": "border" },
+      { "value": "#7d7d7d", "count": 40, "role": "text-muted" },
+      { "value": "#fafafa", "count": 26, "role": "background-subtle" },
+      { "value": "#a8a8a8", "count": 20, "role": "text-disabled" },
+      { "value": "#0070f3", "count": 3, "role": "accent-blue" },
+      { "value": "#0062d1", "count": 3, "role": "accent-blue-dark" },
+      { "value": "#52aeff", "count": 6, "role": "accent-blue-light" },
+      { "value": "#e5484d", "count": 5, "role": "error" },
+      { "value": "#45dec5", "count": 5, "role": "success-teal" },
+      { "value": "#ffb224", "count": 4, "role": "warning" },
+      { "value": "#297a3a", "count": 4, "role": "success-green" },
+      { "value": "#bd2864", "count": 6, "role": "accent-pink" },
+      { "value": "#7820bc", "count": 3, "role": "accent-purple" }
+    ],
+    "semantic": {
+      "backgrounds": [
+        { "value": "#ffffff", "count": 45 },
+        { "value": "#fafafa", "count": 20 },
+        { "value": "#171717", "count": 11 },
+        { "value": "#ebebeb", "count": 9 },
+        { "value": "#0062d1", "count": 2 },
+        { "value": "#e6e6e6", "count": 2 }
+      ],
+      "text": [
+        { "value": "#171717", "count": 2341 },
+        { "value": "#666666", "count": 317 },
+        { "value": "#ffffff", "count": 39 },
+        { "value": "#808080", "count": 36 },
+        { "value": "#000000", "count": 29 },
+        { "value": "#7d7d7d", "count": 20 }
+      ],
+      "borders": [
+        { "value": "#171717", "count": 2278 },
+        { "value": "#666666", "count": 307 },
+        { "value": "#000000", "count": 74 },
+        { "value": "#ebebeb", "count": 31 },
+        { "value": "#a8a8a8", "count": 13 }
+      ],
+      "accents": [
+        { "value": "#0062d1", "count": 1 },
+        { "value": "#e6e6e6", "count": 2 },
+        { "value": "#fafafa", "count": 2 }
+      ]
+    }
+  },
+  "typography": {
+    "fontFamilies": [
+      { "family": "Geist", "weight": "100 900", "style": "normal", "role": "primary-sans" },
+      { "family": "Geist Mono", "weight": "100 900", "style": "normal", "role": "monospace" }
+    ],
+    "scale": ["12px", "13px", "14px", "16px", "18px", "20px", "24px", "32px", "40px", "48px"],
+    "fontWeights": ["400", "500", "600", "700"],
+    "lineHeights": [
+      { "value": "normal", "count": 2380 },
+      { "value": "20px", "count": 284 },
+      { "value": "24px", "count": 30 },
+      { "value": "32px", "count": 16 },
+      { "value": "56px", "count": 32 }
+    ],
+    "letterSpacing": [
+      { "value": "-2.88px", "count": 32, "note": "display-tight" },
+      { "value": "-0.96px", "count": 16 },
+      { "value": "-0.28px", "count": 11 },
+      { "value": "-0.32px", "count": 6 }
+    ]
+  },
+  "spacing": {
+    "scale": ["2px", "4px", "6px", "8px", "10px", "12px", "14px", "16px", "20px", "24px", "32px", "40px", "48px", "64px", "96px"],
+    "grid": "4px",
+    "gaps": [
+      { "value": "8px", "count": 78 },
+      { "value": "12px", "count": 41 },
+      { "value": "4px", "count": 14 },
+      { "value": "16px", "count": 12 },
+      { "value": "6px", "count": 11 },
+      { "value": "24px", "count": 10 },
+      { "value": "32px", "count": 7 }
+    ],
+    "paddings": [
+      { "value": "12px", "count": 178 },
+      { "value": "6px", "count": 154 },
+      { "value": "8px", "count": 119 },
+      { "value": "16px", "count": 62 },
+      { "value": "48px", "count": 57 },
+      { "value": "10px", "count": 24 },
+      { "value": "14px", "count": 18 }
+    ]
+  },
+  "animations": {
+    "keyframes": {
+      "fadeIn": "0%: opacity 0 → 100%: opacity 1",
+      "fadeOut": "0%: opacity 1 → 100%: opacity 0",
+      "scaleIn": "0%: rotateX(-30deg), scale(0.9), opacity 0 → 100%: rotateX(0), scale(1), opacity 1",
+      "scaleOut": "0%: rotateX(0), scale(1), opacity 1 → 100%: rotateX(-10deg), scale(0.95), opacity 0",
+      "slideFromBottom": "0%: translateY(100%) → 100%: translateY(0)",
+      "slideFromTop": "0%: translateY(-100%) → 100%: translateY(0)",
+      "slideFromLeft": "0%: translateX(-100%) → 100%: translateX(0)",
+      "slideFromRight": "0%: translateX(100%) → 100%: translateX(0)",
+      "spin": "0%: rotate(0) → 100%: rotate(360deg)",
+      "pulse": "50%: opacity 0.5"
+    },
+    "transitions": [
+      { "value": "all", "count": 2724 },
+      { "value": "color 0.1s", "count": 40 },
+      { "value": "color 0.15s ease-in-out", "count": 36 },
+      { "value": "border-color 0.15s, background 0.15s, color 0.15s, transform 0.15s, box-shadow 0.15s", "count": 21 },
+      { "value": "transform 0.2s", "count": 12 }
+    ],
+    "durations": ["0.1s", "0.15s", "0.2s", "0.3s", "0.4s"],
+    "easings": [
+      "ease-in-out",
+      "cubic-bezier(0.33, 0.12, 0.15, 1)",
+      "cubic-bezier(0.31, 0.05, 0.43, 1.02)",
+      "cubic-bezier(0.39, 0.18, 0.17, 0.99)"
+    ]
+  },
+  "components": {
+    "buttons": [
+      {
+        "variant": "primary",
+        "backgroundColor": "#0062d1",
+        "textColor": "#ffffff",
+        "borderRadius": "6px",
+        "padding": "6px 10px",
+        "fontSize": "13.3333px",
+        "fontWeight": "500"
+      },
+      {
+        "variant": "secondary",
+        "backgroundColor": "#e6e6e6",
+        "textColor": "#000000",
+        "borderRadius": "6px",
+        "padding": "6px 10px",
+        "fontSize": "13.3333px",
+        "fontWeight": "500"
+      },
+      {
+        "variant": "nav-trigger",
+        "backgroundColor": "transparent",
+        "textColor": "#666666",
+        "borderRadius": "9999px",
+        "padding": "8px 12px",
+        "fontSize": "14px",
+        "fontWeight": "400"
+      },
+      {
+        "variant": "tertiary",
+        "backgroundColor": "transparent",
+        "textColor": "#666666",
+        "borderRadius": "6px",
+        "padding": "0px",
+        "fontSize": "14px",
+        "fontWeight": "500"
+      }
+    ],
+    "inputs": [
+      {
+        "type": "radio",
+        "backgroundColor": "transparent",
+        "borderColor": "#ebebeb",
+        "borderRadius": "0px",
+        "padding": "0px",
+        "fontSize": "13.3333px"
+      }
+    ]
+  },
+  "shadows": [
+    { "value": "rgba(0, 0, 0, 0.08) 0px 0px 0px 1px, rgba(0, 0, 0, 0.04) 0px 2px 2px 0px, rgb(250, 250, 250) 0px 0px 0px 1px", "count": 12, "role": "elevation-card" },
+    { "value": "rgba(0, 0, 0, 0.04) 0px 2px 2px 0px", "count": 11, "role": "elevation-low" },
+    { "value": "rgba(0, 0, 0, 0.08) 0px 0px 0px 1px", "count": 2, "role": "border-shadow" },
+    { "value": "rgb(235, 235, 235) 0px 0px 0px 1px", "count": 2, "role": "border-subtle" }
+  ],
+  "borderRadius": [
+    { "value": "4px", "count": 41, "role": "small" },
+    { "value": "6px", "count": 46, "role": "default" },
+    { "value": "8px", "count": 12, "role": "medium" },
+    { "value": "9999px", "count": 23, "role": "pill" },
+    { "value": "50%", "count": 13, "role": "circle" },
+    { "value": "64px", "count": 6, "role": "large" },
+    { "value": "100px", "count": 12, "role": "xl" }
+  ],
+  "breakpoints": {
+    "detected": [375, 480, 640, 768, 1024, 1080, 1200, 1400],
+    "containerWidths": [318, 360, 600, 720, 1080, 1251]
+  },
+  "icons": {
+    "library": null,
+    "note": "Custom SVG icons"
+  }
+}

@@ -1,0 +1,227 @@
+/**
+ * Linear Design System - CSS Custom Properties
+ * Generated from https://linear.app/
+ * Extracted: 2026-01-05
+ * 
+ * Dark-mode-first SaaS product with Inter Variable and Berkeley Mono fonts.
+ * Indigo accent color (#5e6ad2). 4px spacing grid.
+ */
+
+:root {
+  /* ============================================
+     COLORS - Brand
+     ============================================ */
+  --linear-white: #ffffff;
+  --linear-black: #000000;
+  --linear-indigo: #5e6ad2;
+  --linear-indigo-light: #6771c5;
+  
+  /* ============================================
+     COLORS - Semantic
+     ============================================ */
+  --linear-blue: #4ea7fc;
+  --linear-red: #eb5757;
+  --linear-green: #4cb782;
+  --linear-green-plan: #68cc58;
+  --linear-green-dark: #2c901c;
+  --linear-orange: #fc7840;
+  --linear-yellow: #f2c94c;
+  --linear-yellow-build: #d4b144;
+  
+  /* ============================================
+     COLORS - Backgrounds (Dark Mode)
+     ============================================ */
+  --linear-bg-primary: #0f1011;
+  --linear-bg-elevated: #08090a;
+  --linear-bg-surface: #28282c;
+  --linear-bg-surface-subtle: #1c1c1f;
+  --linear-bg-surface-light: #141516;
+  --linear-bg-surface-hover: #18191a;
+  --linear-bg-surface-card: #232326;
+  
+  /* ============================================
+     COLORS - Text
+     ============================================ */
+  --linear-text-primary: #f7f8f8;
+  --linear-text-secondary: #8a8f98;
+  --linear-text-tertiary: #d0d6e0;
+  --linear-text-muted: #62666d;
+  --linear-text-quaternary: #91959c;
+  
+  /* ============================================
+     COLORS - Borders
+     ============================================ */
+  --linear-border: #3e3e44;
+  --linear-border-subtle: #1c1c1f;
+  --linear-border-strong: #262728;
+  
+  /* ============================================
+     TYPOGRAPHY - Font Families
+     ============================================ */
+  --linear-font-sans: "Inter Variable", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+  --linear-font-serif: "Tiempos Headline", ui-serif, Georgia, Cambria, serif;
+  --linear-font-mono: "Berkeley Mono", ui-monospace, "SF Mono", "Menlo", monospace;
+  
+  /* ============================================
+     TYPOGRAPHY - Font Weights
+     ============================================ */
+  --linear-font-weight-light: 300;
+  --linear-font-weight-normal: 400;
+  --linear-font-weight-medium: 510;
+  --linear-font-weight-semibold: 590;
+  --linear-font-weight-bold: 680;
+  
+  /* ============================================
+     TYPOGRAPHY - Font Sizes
+     ============================================ */
+  --linear-font-size-micro: 0.625rem;   /* 10px */
+  --linear-font-size-mini: 0.75rem;     /* 12px */
+  --linear-font-size-small: 0.8125rem;  /* 13px */
+  --linear-font-size-base: 0.9375rem;   /* 15px */
+  --linear-font-size-large: 1.0625rem;  /* 17px */
+  --linear-font-size-title-1: 1.0625rem;
+  --linear-font-size-title-2: 1.3125rem;
+  --linear-font-size-title-3: 1.5rem;
+  --linear-font-size-title-4: 2rem;
+  --linear-font-size-title-5: 2.5rem;
+  --linear-font-size-title-6: 3rem;
+  --linear-font-size-title-7: 3.5rem;
+  --linear-font-size-title-8: 4rem;
+  
+  /* ============================================
+     TYPOGRAPHY - Line Heights
+     ============================================ */
+  --linear-line-height-tight: 1.1;
+  --linear-line-height-snug: 1.33;
+  --linear-line-height-normal: 1.4;
+  --linear-line-height-relaxed: 1.5;
+  --linear-line-height-loose: 1.6;
+  
+  /* ============================================
+     TYPOGRAPHY - Letter Spacing
+     ============================================ */
+  --linear-letter-spacing-tight: -0.022em;
+  --linear-letter-spacing-normal: -0.012em;
+  --linear-letter-spacing-display: -0.022em;
+  
+  /* ============================================
+     SPACING (4px grid)
+     ============================================ */
+  --linear-space-0-5: 2px;
+  --linear-space-1: 4px;
+  --linear-space-1-5: 6px;
+  --linear-space-2: 8px;
+  --linear-space-2-5: 10px;
+  --linear-space-3: 12px;
+  --linear-space-4: 16px;
+  --linear-space-5: 20px;
+  --linear-space-6: 24px;
+  --linear-space-8: 32px;
+  --linear-space-10: 40px;
+  --linear-space-12: 48px;
+  --linear-space-14: 56px;
+  --linear-space-16: 64px;
+  --linear-space-18: 72px;
+  --linear-space-24: 96px;
+  --linear-space-40: 160px;
+  
+  /* ============================================
+     BORDER RADIUS
+     ============================================ */
+  --linear-radius-xs: 4px;
+  --linear-radius-sm: 6px;
+  --linear-radius-md: 8px;
+  --linear-radius-lg: 12px;
+  --linear-radius-xl: 16px;
+  --linear-radius-2xl: 24px;
+  --linear-radius-3xl: 32px;
+  --linear-radius-full: 9999px;
+  
+  /* ============================================
+     SHADOWS
+     ============================================ */
+  --linear-shadow-low: rgba(0, 0, 0, 0) 0px 8px 2px 0px, rgba(0, 0, 0, 0.01) 0px 5px 2px 0px, rgba(0, 0, 0, 0.04) 0px 3px 2px 0px, rgba(0, 0, 0, 0.07) 0px 1px 1px 0px, rgba(0, 0, 0, 0.08) 0px 0px 1px 0px;
+  --linear-shadow-medium: rgba(0, 0, 0, 0.2) 0px 4px 24px 0px;
+  --linear-shadow-high: rgba(0, 0, 0, 0.35) 0px 7px 32px 0px;
+  --linear-shadow-glow: rgba(255, 255, 255, 0.04) 0px 1.5px 5px 0px inset, rgba(255, 255, 255, 0.1) 0px -0.75px 0.75px 0px inset;
+  
+  /* ============================================
+     TRANSITIONS
+     ============================================ */
+  --linear-duration-quick: 100ms;
+  --linear-duration-regular: 250ms;
+  --linear-duration-slow: 320ms;
+  
+  --linear-ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --linear-ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --linear-ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --linear-ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+  --linear-ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  
+  /* ============================================
+     LAYOUT
+     ============================================ */
+  --linear-max-width-page: 1024px;
+  --linear-max-width-prose: 624px;
+  --linear-page-padding: 24px;
+  --linear-header-height: 64px;
+  
+  /* ============================================
+     Z-INDEX
+     ============================================ */
+  --linear-z-footer: 50;
+  --linear-z-scrollbar: 75;
+  --linear-z-header: 100;
+  --linear-z-overlay: 500;
+  --linear-z-popover: 600;
+  --linear-z-command-menu: 650;
+  --linear-z-dialog-overlay: 699;
+  --linear-z-dialog: 700;
+  --linear-z-toasts: 800;
+  --linear-z-tooltip: 1100;
+  --linear-z-context-menu: 1200;
+  --linear-z-max: 10000;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes linear-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes linear-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes linear-scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes linear-scale-out {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.95); }
+}
+
+@keyframes linear-blur-in {
+  from { opacity: 0; filter: blur(4px); }
+  to { opacity: 1; filter: blur(0); }
+}
+
+@keyframes linear-blur-out {
+  from { opacity: 1; filter: blur(0); }
+  to { opacity: 0; filter: blur(4px); }
+}
+
+@keyframes linear-slide-down {
+  from { opacity: 0; height: 0; transform: translateY(-8px); }
+  to { opacity: 1; height: var(--radix-collapsible-content-height); transform: none; }
+}
+
+@keyframes linear-slide-up {
+  from { opacity: 1; height: var(--radix-collapsible-content-height); transform: none; }
+  to { opacity: 0; height: 0; transform: translateY(-8px); }
+}
