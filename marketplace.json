@@ -1,0 +1,30 @@
+{
+  "name": "design-system-extractor",
+  "version": "1.0.0",
+  "description": "Extract complete design systems from live websites using Playwright. Generates structured style guides, enables comparison workflows, and outputs to JSON/Tailwind/CSS variables.",
+  "author": "jamesrosing",
+  "license": "MIT",
+  "keywords": [
+    "design-system",
+    "style-guide",
+    "css",
+    "tailwind",
+    "playwright",
+    "web-scraping",
+    "typography",
+    "colors",
+    "spacing",
+    "ui-design"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamesrosing/design-system-extractor"
+  },
+  "skills": [
+    {
+      "name": "design-system-extractor",
+      "path": ".",
+      "description": "Extract, compare, and implement design systems from any website"
+    }
+  ]
+}

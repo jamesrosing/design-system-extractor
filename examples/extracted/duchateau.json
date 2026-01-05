@@ -1,0 +1,202 @@
+{
+  "meta": {
+    "url": "https://duchateau.com/",
+    "title": "Home - DUCHATEAU",
+    "extractedAt": "2026-01-05T18:14:35.518Z",
+    "viewport": { "width": 1256, "height": 1285 },
+    "designCharacter": "Luxury/editorial aesthetic with high contrast black/white palette, warm cream secondary, and pink accents. Typography-forward with dramatic scale. Minimal border-radius for sharp, architectural feel. WordPress/Elementor with Shopify integration."
+  },
+  "colors": {
+    "cssVariables": {
+      "--wp--preset--color--black": "#000000",
+      "--wp--preset--color--white": "#ffffff",
+      "--wp--preset--color--cyan-bluish-gray": "#abb8c3",
+      "--wp--preset--color--pale-pink": "#f78da7",
+      "--wp--preset--color--vivid-red": "#cf2e2e",
+      "--wp--preset--font-size--small": "13px",
+      "--wp--preset--font-size--medium": "20px",
+      "--wp--preset--font-size--large": "36px",
+      "--wp--preset--font-size--x-large": "42px",
+      "--wp--preset--spacing--40": "1rem",
+      "--wp--preset--spacing--50": "1.5rem",
+      "--wp--preset--spacing--60": "2.25rem",
+      "--wp--style--global--content-size": "800px",
+      "--wp--style--global--wide-size": "1200px",
+      "--wp--style--block-gap": "24px"
+    },
+    "palette": [
+      { "value": "#000000", "count": 1201, "role": "primary" },
+      { "value": "#333333", "count": 798, "role": "secondary-text" },
+      { "value": "#ffffff", "count": 299, "role": "background" },
+      { "value": "#cc3366", "count": 130, "role": "accent" },
+      { "value": "#fbf9f4", "count": 20, "role": "warm-background" },
+      { "value": "#121212", "count": 11, "role": "near-black" },
+      { "value": "#212121", "count": 6 },
+      { "value": "#dddddd", "count": 6 },
+      { "value": "#313131", "count": 4 },
+      { "value": "#1863dc", "count": 3, "role": "link-blue" },
+      { "value": "#f0efe9", "count": 2 },
+      { "value": "#cfcfcf", "count": 2 }
+    ],
+    "semantic": {
+      "backgrounds": [
+        { "value": "#ffffff", "count": 18 },
+        { "value": "#fbf9f4", "count": 10 },
+        { "value": "#000000", "count": 7 },
+        { "value": "#f0efe9", "count": 2 }
+      ],
+      "text": [
+        { "value": "#000000", "count": 592 },
+        { "value": "#333333", "count": 400 },
+        { "value": "#ffffff", "count": 147 },
+        { "value": "#cc3366", "count": 65 }
+      ],
+      "borders": [
+        { "value": "#000000", "count": 602 },
+        { "value": "#333333", "count": 398 },
+        { "value": "#ffffff", "count": 134 },
+        { "value": "#cc3366", "count": 65 }
+      ],
+      "accents": [
+        { "value": "#fbf9f4", "count": 10 },
+        { "value": "#cfcfcf", "count": 1 }
+      ]
+    }
+  },
+  "typography": {
+    "fontFamilies": [
+      { "family": "beaufort-pro", "weight": "400", "style": "normal", "role": "primary-serif" },
+      { "family": "ABC Social Condensed Bold", "weight": "normal", "style": "normal", "role": "display-heading" },
+      { "family": "Suisse Intl Regular", "weight": "normal", "style": "normal", "role": "ui-text" }
+    ],
+    "scale": [
+      "12px", "13px", "14px", "16px", "18px", "20px", "24px", "26px",
+      "30px", "32px", "36px", "40px", "80px", "138.16px", "152px"
+    ],
+    "fontWeights": ["400", "500", "600", "700"],
+    "lineHeights": [
+      { "value": "24px", "count": 552 },
+      { "value": "15.4px", "count": 302 },
+      { "value": "18.4px", "count": 86 },
+      { "value": "normal", "count": 26 },
+      { "value": "36px", "count": 11 }
+    ],
+    "letterSpacing": [
+      { "value": "-3.2px", "count": 20, "note": "tight-display" },
+      { "value": "-1.6px", "count": 1 },
+      { "value": "-1.056px", "count": 2 }
+    ]
+  },
+  "spacing": {
+    "scale": ["5px", "8px", "10px", "16px", "20px", "24px", "32px", "48px", "56px", "72px", "80px", "96px", "128px", "160px"],
+    "grid": null,
+    "gaps": [
+      { "value": "20px", "count": 226 },
+      { "value": "5px", "count": 84 },
+      { "value": "10px", "count": 19 },
+      { "value": "25px", "count": 2 },
+      { "value": "80px", "count": 1 }
+    ],
+    "paddings": [
+      { "value": "10px", "count": 89 },
+      { "value": "16px", "count": 75 },
+      { "value": "20px", "count": 45 },
+      { "value": "8px", "count": 44 },
+      { "value": "24px", "count": 30 },
+      { "value": "48px", "count": 6 }
+    ]
+  },
+  "animations": {
+    "keyframes": {
+      "fadeIn": "0%: opacity 0 → 100%: opacity 1",
+      "fadeInDown": "0%: opacity 0, translateY(-100%) → 100%: opacity 1, none",
+      "fadeInUp": "0%: opacity 0, translateY(100%) → 100%: opacity 1, none",
+      "slideInFromRight": "0%: translateX(100%) → 100%: translateX(calc(100% - 70px))",
+      "remodal-opening": "0%: scale(1.05), opacity 0 → 100%: none, opacity 1",
+      "shimmer": "0%: opacity 0.5 → 100%: opacity 1"
+    },
+    "transitions": [
+      { "value": "background 0.3s, border 0.3s, box-shadow 0.3s, transform 0.4s", "count": 169 },
+      { "value": "0.3s", "count": 42 },
+      { "value": "transform 1s cubic-bezier(0, 0.33, 0.07, 1.03), opacity 1s", "count": 8 },
+      { "value": "0.4s", "count": 7 },
+      { "value": "0.5s", "count": 5 }
+    ],
+    "durations": ["0.1s", "0.2s", "0.3s", "0.4s", "0.5s", "1s"],
+    "easings": ["ease", "ease-in-out", "cubic-bezier(0, 0.33, 0.07, 1.03)"]
+  },
+  "components": {
+    "buttons": [
+      {
+        "variant": "primary",
+        "backgroundColor": "#000000",
+        "textColor": "#ffffff",
+        "borderRadius": "2px",
+        "padding": "8px",
+        "fontSize": "14px",
+        "fontWeight": "500",
+        "border": "2px solid rgb(255, 255, 255)"
+      },
+      {
+        "variant": "secondary",
+        "backgroundColor": "#ffffff",
+        "textColor": "#000000",
+        "borderRadius": "2px",
+        "padding": "8px",
+        "fontSize": "14px",
+        "fontWeight": "500",
+        "border": "2px solid rgb(255, 255, 255)"
+      },
+      {
+        "variant": "pill-cta",
+        "backgroundColor": "#cfcfcf",
+        "textColor": "#ffffff",
+        "borderRadius": "50px",
+        "padding": "24px 56px",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "border": "2px solid rgb(255, 255, 255)"
+      }
+    ],
+    "inputs": [
+      {
+        "type": "email",
+        "backgroundColor": "transparent",
+        "borderColor": "#000000",
+        "borderRadius": "0px",
+        "padding": "0px 0px 10px",
+        "fontSize": "14px",
+        "style": "underline-only"
+      },
+      {
+        "type": "select",
+        "backgroundColor": "transparent",
+        "borderColor": "#000000",
+        "borderRadius": "0px",
+        "padding": "0px 0px 11px",
+        "fontSize": "14px",
+        "style": "underline-only"
+      }
+    ]
+  },
+  "shadows": [
+    { "value": "rgba(0, 0, 0, 0.5) 0px 8px 13px -8px", "count": 2, "role": "subtle-elevation" },
+    { "value": "rgba(172, 171, 171, 0.3) 0px -1px 10px 0px", "count": 1, "role": "top-glow" },
+    { "value": "rgba(0, 0, 0, 0.3) 0px 32px 68px 0px", "count": 1, "role": "modal-shadow" },
+    { "value": "rgba(0, 0, 0, 0.1) -17px 0px 35px 0px", "count": 1, "role": "side-shadow" }
+  ],
+  "borderRadius": [
+    { "value": "3px", "count": 25, "role": "default" },
+    { "value": "2px", "count": 5, "role": "buttons" },
+    { "value": "6px", "count": 4, "role": "cards" },
+    { "value": "50px", "count": 1, "role": "pill" }
+  ],
+  "breakpoints": {
+    "detected": [576, 768, 992, 1024, 1200, 1300, 1440, 1600, 1920],
+    "containerWidths": [314, 800, 1200]
+  },
+  "icons": {
+    "library": null,
+    "note": "Custom SVG icons, no standard library detected"
+  }
+}
