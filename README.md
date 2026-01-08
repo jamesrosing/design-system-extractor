@@ -1,13 +1,15 @@
 # Impression
 
-Extract complete design systems from any live website. Generate structured style guides, compare against existing projects, and create implementation plans.
+Extract complete design systems from any live website using Playwright browser automation. Compare projects against reference designs with perceptually accurate color matching, and generate implementation plans.
 
 ## What It Does
 
 - **Extracts** colors, typography, spacing, animations, shadows, border-radius, breakpoints, and component patterns from any URL
 - **Outputs** JSON (canonical), Tailwind config, or CSS custom properties
-- **Compares** your project against extracted design systems with ΔE color matching
-- **Generates** prioritized implementation plans with atomic commits
+- **Compares** your project against extracted design systems using CIE ΔE 2000 color matching
+- **Generates** prioritized implementation plans with atomic commits (P0→P4)
+
+**Zero dependencies** — vanilla Node.js scripts, no package.json, no build step.
 
 ## Installation
 
@@ -19,8 +21,6 @@ Extract complete design systems from any live website. Generate structured style
 
 ### Manual Installation
 
-Copy to your skills directory:
-
 ```bash
 # Personal skills
 cp -r impression ~/.claude/skills/
@@ -28,11 +28,6 @@ cp -r impression ~/.claude/skills/
 # Project-specific
 cp -r impression .claude/skills/
 ```
-
-### Claude.ai Web App
-
-1. Go to **Settings** → **Profile** → **Custom Skills**
-2. Upload the `SKILL.md` file and supporting folders
 
 ## Usage
 
@@ -58,109 +53,49 @@ Compare my project at /path/to/project against the Linear design system
 Create a feature branch to align my webapp with the DuChateau design
 ```
 
-## Compare Project Against Reference
+## CLI Commands
 
-Analyze how your project's styles align with an extracted design system:
+### Compare Project Against Reference
 
 ```bash
-# Generate comparison report
+# Generate comparison report (prints to stdout)
 node scripts/compare-design-systems.js ./my-project examples/extracted/duchateau.json
 
 # Save to file
 node scripts/compare-design-systems.js ./my-project examples/extracted/duchateau.json comparison.md
 ```
 
-Output includes:
+**Output includes:**
 - Overall alignment score (0-100%)
 - Per-category scores (colors, typography, spacing, border-radius)
 - Exact matches, similar colors (ΔE < 5), missing tokens
 - Actionable recommendations
 
-## Generate Implementation Plan
-
-Create a prioritized plan to align your project with a reference:
+### Generate Implementation Plan
 
 ```bash
 # Preview changes (dry run)
 node scripts/implement-design-changes.js ./my-project examples/extracted/duchateau.json --dry-run
 
-# Generate plan and create branch
+# Generate plan and create feature branch
 node scripts/implement-design-changes.js ./my-project examples/extracted/duchateau.json
 ```
 
-Creates:
+**Creates:**
 - Feature branch: `feature/design-system-alignment`
 - `DESIGN_IMPLEMENTATION_PLAN.md` with exact tokens and git commands
-- Prioritized commits: P0 (colors) → P4 (animations)
+- Prioritized commits: P0 (colors) → P1 (typography) → P2 (spacing) → P3 (border-radius) → P4 (animations)
 
-## Output Formats
-
-### JSON (Default)
-
-Complete structured data following the canonical schema in `templates/style-guide-schema.json`.
-
-### Tailwind Config
-
-Generate directly from extracted JSON:
+### Generate Tailwind Config
 
 ```bash
 node scripts/generate-tailwind-config.js examples/extracted/duchateau.json tailwind.config.js
 ```
 
-Output:
-```javascript
-// Generated tailwind.config.js
-module.exports = {
-  theme: {
-    extend: {
-      colors: {
-        primary: '#000000',
-        background: { DEFAULT: '#ffffff', secondary: '#fbf9f4' },
-        foreground: { DEFAULT: '#000000', secondary: '#333333' },
-        accent: { DEFAULT: '#cc3366' }
-      },
-      fontFamily: {
-        serif: ['"beaufort-pro"', 'system-ui', 'sans-serif'],
-        display: ['"ABC Social Condensed Bold"', 'system-ui', 'sans-serif']
-      },
-      // ... full theme
-    }
-  }
-}
-```
-
-### CSS Variables
-
-Generate directly from extracted JSON:
+### Generate CSS Variables
 
 ```bash
 node scripts/generate-css-variables.js examples/extracted/duchateau.json variables.css
-```
-
-Output:
-```css
-:root {
-  /* Colors */
-  --color-primary: #000000;
-  --color-bg: #ffffff;
-  --color-bg-2: #fbf9f4;
-  --color-text: #000000;
-  --color-text-secondary: #333333;
-  --color-accent: #cc3366;
-  
-  /* Typography */
-  --font-serif: "beaufort-pro", system-ui, sans-serif;
-  --font-display: "ABC Social Condensed Bold", system-ui, sans-serif;
-  --font-size-xs: 12px;
-  --font-size-sm: 13px;
-  /* ... full scale */
-  
-  /* Spacing */
-  --spacing-xs: 5px;
-  --spacing-sm: 8px;
-  --spacing-md: 10px;
-  /* ... */
-}
 ```
 
 ## Pre-Extracted References
@@ -177,52 +112,110 @@ Skip live extraction for these popular designs:
 
 | Category | Details |
 |----------|---------|
-| **Colors** | CSS variables, computed palette, semantic groupings (backgrounds, text, borders, accents) |
-| **Typography** | Font families, scale, weights, line-heights, letter-spacing |
-| **Spacing** | Scale, grid detection, gaps, paddings, margins |
-| **Animations** | Keyframes, transitions, durations, easings |
-| **Components** | Buttons, inputs, cards (with full style properties) |
-| **Layout** | Breakpoints, container widths |
-| **Effects** | Shadows, border-radius patterns |
-| **Icons** | Library detection (Lucide, Heroicons, FontAwesome, etc.) |
+| **Colors** | CSS variables from `:root`, computed palette with occurrence counts, semantic groupings (backgrounds, text, borders, accents) |
+| **Typography** | Font families (via Font Loading API), size scale, weights, line-heights, letter-spacing |
+| **Spacing** | Scale derived from padding/margin/gap values |
+| **Animations** | `@keyframes` rules, transition properties, durations, easing functions |
+| **Components** | Buttons and inputs with full computed styles |
+| **Layout** | Breakpoints from `@media` queries, container `max-width` values |
+| **Effects** | Box shadows, border-radius patterns |
+| **Icons** | Library detection (Lucide, Heroicons, FontAwesome, Material) |
+
+## Comparison Algorithms
+
+| Category | Algorithm | Match Criteria |
+|----------|-----------|----------------|
+| Colors | CIE ΔE 2000 | Exact: ΔE = 0, Similar: ΔE < 5, Different: ΔE ≥ 5 |
+| Typography | Fuzzy string match | Font family name contains/contained by reference |
+| Spacing | Numeric diff | Exact: 0px diff, Close: ≤2px diff |
+| Border Radius | Exact match | Pixel value equality |
+
+## Extracted JSON Schema
+
+```yaml
+meta:
+  url: string
+  title: string
+  extractedAt: ISO timestamp
+  viewport: { width, height }
+  designCharacter: string (optional description)
+
+colors:
+  cssVariables: { --var-name: value }
+  palette: [{ value: hex, count: number, role?: string }]
+  semantic:
+    backgrounds: [{ value, count }]
+    text: [{ value, count }]
+    borders: [{ value, count }]
+    accents: [{ value, count }]
+
+typography:
+  fontFamilies: [{ family, weight, style, role? }]
+  scale: ["12px", "14px", ...]
+  fontWeights: ["400", "500", ...]
+  lineHeights: [{ value, count }]
+  letterSpacing: [{ value, count }]
+
+spacing:
+  scale: ["4px", "8px", ...]
+  paddings: [{ value, count }]
+  margins: [{ value, count }]
+  gaps: [{ value, count }]
+
+animations:
+  keyframes: { name: cssText }
+  transitions: [{ value, count }]
+  durations: []
+  easings: []
+
+borderRadius: [{ value, count }]
+shadows: [{ value, count }]
+breakpoints:
+  detected: [768, 1024, ...]
+  containerWidths: [1024, ...]
+components:
+  buttons: [{ backgroundColor, textColor, ... }]
+  inputs: [{ type, backgroundColor, ... }]
+icons:
+  library: "lucide" | "heroicons" | "fontawesome" | "material" | null
+```
 
 ## File Structure
 
 ```
 impression/
-├── SKILL.md                    # Main instructions
-├── marketplace.json            # Plugin metadata
+├── SKILL.md                    # Claude skill instructions
+├── CLAUDE.md                   # Project context for Claude Code
+├── marketplace.json            # Plugin metadata (v1.3.0)
 ├── README.md                   # This file
 ├── LICENSE                     # MIT
 ├── scripts/
-│   ├── extract-design-system.js      # Browser injection script
-│   ├── compare-design-systems.js     # Project ↔ reference comparison
-│   ├── implement-design-changes.js   # Generate implementation plan
-│   ├── generate-tailwind-config.js   # JSON → Tailwind converter
-│   └── generate-css-variables.js     # JSON → CSS vars converter
-├── templates/                  # (reserved for future templates)
-├── references/                 # (reserved for style references)
+│   ├── extract-design-system.js      # Browser injection script (193 lines)
+│   ├── compare-design-systems.js     # ΔE comparison engine (661 lines)
+│   ├── implement-design-changes.js   # Plan generator (426 lines)
+│   ├── generate-tailwind-config.js   # JSON → Tailwind (206 lines)
+│   └── generate-css-variables.js     # JSON → CSS vars (265 lines)
 └── examples/
-    ├── extracted/
-    │   ├── duchateau.json      # Luxury/editorial aesthetic
-    │   ├── linear.json         # Dark-mode SaaS, Inter Variable
-    │   └── vercel.json         # Developer platform, Geist font
-    └── generated/              # Generated config examples
-        ├── duchateau-tailwind.config.js
-        └── duchateau-variables.css
+    ├── extracted/              # Pre-extracted reference designs
+    │   ├── duchateau.json
+    │   ├── linear.json
+    │   └── vercel.json
+    └── generated/              # Example generated configs
+        ├── *-tailwind.config.js
+        └── *-variables.css
 ```
 
 ## Limitations
 
 - **Cross-origin stylesheets**: May be inaccessible due to CORS
-- **CSS-in-JS**: Requires page interaction to trigger all runtime styles
-- **Protected sites**: Some sites block automated access
-- **Dynamic content**: May need scrolling to capture lazy-loaded styles
+- **CSS-in-JS**: Requires page interaction to trigger runtime style injection
+- **Protected sites**: Some sites block automated browser access
+- **Dynamic content**: May need scrolling/interaction to capture lazy-loaded styles
 
 ## Requirements
 
-- Claude Code, Claude.ai (Pro/Max/Team/Enterprise), or Claude API
-- Playwright browser automation (for live extraction)
+- Claude Code with Playwright MCP, or Claude.ai (Pro/Max/Team/Enterprise)
+- Node.js (for CLI scripts)
 
 ## License
 
@@ -230,13 +223,15 @@ MIT
 
 ## Contributing
 
-PRs welcome! Ideas for improvement:
+PRs welcome! Roadmap:
 
 - [x] Tailwind config generator
 - [x] CSS variables generator
-- [x] Project comparison with ΔE color matching
-- [x] Implementation plan generator
-- [x] Pre-extracted references (Linear, Vercel)
-- [ ] More references (Stripe, Notion, Tailwind)
+- [x] Project comparison with CIE ΔE 2000 color matching
+- [x] Implementation plan generator with atomic commits
+- [x] Pre-extracted references (Linear, Vercel, DuChateau)
+- [ ] More references (Stripe, Notion, Tailwind UI)
 - [ ] Figma export format
 - [ ] Automated PR generation with before/after screenshots
+- [ ] Dark/light mode detection and dual-theme extraction
+- [ ] Component pattern library extraction

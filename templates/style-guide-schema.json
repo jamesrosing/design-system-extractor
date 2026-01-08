@@ -1,0 +1,380 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/jamesrosing/impression/templates/style-guide-schema.json",
+  "title": "Impression Design System Schema",
+  "description": "JSON Schema for extracted design systems from Impression",
+  "version": "2.0.0",
+  "type": "object",
+  "required": ["meta", "colors"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "description": "Metadata about the extraction",
+      "required": ["url", "extractedAt"],
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Source URL of the extracted design"
+        },
+        "title": {
+          "type": "string",
+          "description": "Page title"
+        },
+        "extractedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO timestamp of extraction"
+        },
+        "viewport": {
+          "type": "object",
+          "properties": {
+            "width": { "type": "integer" },
+            "height": { "type": "integer" }
+          }
+        },
+        "designCharacter": {
+          "type": "string",
+          "description": "Human-readable description of the design aesthetic"
+        },
+        "theme": {
+          "type": "string",
+          "enum": ["light", "dark", "auto"],
+          "description": "Detected color theme preference"
+        }
+      }
+    },
+    "colors": {
+      "type": "object",
+      "description": "Color tokens and palette",
+      "properties": {
+        "cssVariables": {
+          "type": "object",
+          "description": "CSS custom properties from :root",
+          "additionalProperties": { "type": "string" }
+        },
+        "palette": {
+          "type": "array",
+          "description": "Computed color palette with usage counts",
+          "items": {
+            "type": "object",
+            "required": ["value"],
+            "properties": {
+              "value": {
+                "type": "string",
+                "description": "Hex color value"
+              },
+              "count": {
+                "type": "integer",
+                "description": "Number of occurrences"
+              },
+              "role": {
+                "type": "string",
+                "description": "Semantic role (e.g., 'primary', 'background', 'accent')"
+              }
+            }
+          }
+        },
+        "semantic": {
+          "type": "object",
+          "description": "Colors grouped by semantic usage",
+          "properties": {
+            "backgrounds": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/colorWithCount" }
+            },
+            "text": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/colorWithCount" }
+            },
+            "borders": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/colorWithCount" }
+            },
+            "accents": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/colorWithCount" }
+            }
+          }
+        },
+        "gradients": {
+          "type": "array",
+          "description": "Extracted gradient definitions",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["linear-gradient", "radial-gradient", "conic-gradient"]
+              },
+              "value": { "type": "string" },
+              "colors": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "count": { "type": "integer" }
+            }
+          }
+        }
+      }
+    },
+    "typography": {
+      "type": "object",
+      "description": "Typography tokens",
+      "properties": {
+        "fontFamilies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["family"],
+            "properties": {
+              "family": { "type": "string" },
+              "weight": { "type": "string" },
+              "style": { "type": "string" },
+              "role": {
+                "type": "string",
+                "description": "Semantic role (e.g., 'heading', 'body', 'mono')"
+              }
+            }
+          }
+        },
+        "scale": {
+          "type": "array",
+          "description": "Font size scale",
+          "items": { "type": "string" }
+        },
+        "fontWeights": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "lineHeights": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/valueWithCount" }
+        },
+        "letterSpacing": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/valueWithCount" }
+        },
+        "pairings": {
+          "type": "array",
+          "description": "Detected font pairings (heading + body)",
+          "items": {
+            "type": "object",
+            "properties": {
+              "heading": { "type": "string" },
+              "body": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "spacing": {
+      "type": "object",
+      "description": "Spacing tokens",
+      "properties": {
+        "scale": {
+          "type": "array",
+          "description": "Spacing scale values",
+          "items": { "type": "string" }
+        },
+        "grid": {
+          "type": "string",
+          "description": "Base grid unit (e.g., '4px', '8px')"
+        },
+        "gaps": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/valueWithCount" }
+        },
+        "paddings": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/valueWithCount" }
+        },
+        "margins": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/valueWithCount" }
+        }
+      }
+    },
+    "animations": {
+      "type": "object",
+      "description": "Animation and transition tokens",
+      "properties": {
+        "keyframes": {
+          "type": "object",
+          "description": "Named keyframe animations",
+          "additionalProperties": { "type": "string" }
+        },
+        "transitions": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/valueWithCount" }
+        },
+        "durations": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "easings": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "components": {
+      "type": "object",
+      "description": "Extracted component patterns",
+      "properties": {
+        "buttons": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/buttonComponent" }
+        },
+        "inputs": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/inputComponent" }
+        },
+        "cards": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/cardComponent" }
+        },
+        "navigation": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "modals": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "badges": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "alerts": {
+          "type": "array",
+          "items": { "type": "object" }
+        }
+      }
+    },
+    "shadows": {
+      "type": "array",
+      "description": "Box shadow tokens",
+      "items": {
+        "type": "object",
+        "properties": {
+          "value": { "type": "string" },
+          "count": { "type": "integer" },
+          "role": { "type": "string" }
+        }
+      }
+    },
+    "borderRadius": {
+      "type": "array",
+      "description": "Border radius tokens",
+      "items": {
+        "type": "object",
+        "properties": {
+          "value": { "type": "string" },
+          "count": { "type": "integer" },
+          "role": { "type": "string" }
+        }
+      }
+    },
+    "breakpoints": {
+      "type": "object",
+      "description": "Responsive breakpoints",
+      "properties": {
+        "detected": {
+          "type": "array",
+          "items": { "type": "integer" }
+        },
+        "containerWidths": {
+          "type": "array",
+          "items": { "type": "integer" }
+        }
+      }
+    },
+    "icons": {
+      "type": "object",
+      "description": "Icon library detection",
+      "properties": {
+        "library": {
+          "type": ["string", "null"],
+          "enum": ["lucide", "heroicons", "fontawesome", "material", "phosphor", null]
+        },
+        "note": { "type": "string" }
+      }
+    },
+    "themes": {
+      "type": "object",
+      "description": "Multi-theme support (light/dark)",
+      "properties": {
+        "light": { "$ref": "#/definitions/themeOverrides" },
+        "dark": { "$ref": "#/definitions/themeOverrides" }
+      }
+    }
+  },
+  "definitions": {
+    "colorWithCount": {
+      "type": "object",
+      "required": ["value"],
+      "properties": {
+        "value": { "type": "string" },
+        "count": { "type": "integer" }
+      }
+    },
+    "valueWithCount": {
+      "type": "object",
+      "required": ["value"],
+      "properties": {
+        "value": { "type": "string" },
+        "count": { "type": "integer" },
+        "note": { "type": "string" }
+      }
+    },
+    "buttonComponent": {
+      "type": "object",
+      "properties": {
+        "variant": { "type": "string" },
+        "backgroundColor": { "type": "string" },
+        "textColor": { "type": "string" },
+        "borderRadius": { "type": "string" },
+        "padding": { "type": "string" },
+        "fontSize": { "type": "string" },
+        "fontWeight": { "type": "string" },
+        "border": { "type": "string" },
+        "boxShadow": { "type": "string" }
+      }
+    },
+    "inputComponent": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string" },
+        "backgroundColor": { "type": "string" },
+        "borderColor": { "type": "string" },
+        "borderRadius": { "type": "string" },
+        "padding": { "type": "string" },
+        "fontSize": { "type": "string" }
+      }
+    },
+    "cardComponent": {
+      "type": "object",
+      "properties": {
+        "backgroundColor": { "type": "string" },
+        "borderRadius": { "type": "string" },
+        "padding": { "type": "string" },
+        "boxShadow": { "type": "string" },
+        "border": { "type": "string" }
+      }
+    },
+    "themeOverrides": {
+      "type": "object",
+      "properties": {
+        "colors": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "backgrounds": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

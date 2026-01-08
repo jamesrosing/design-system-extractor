@@ -1,0 +1,165 @@
+{
+  "meta": {
+    "url": "https://www.eatsorrel.com/",
+    "title": "Sorrel — Cooking Inspiration",
+    "extractedAt": "2026-01-08T03:21:46.602Z",
+    "viewport": { "width": 1905, "height": 2053 },
+    "designCharacter": "Light-mode cooking app. Warm cream background (#f7f7f4), elegant serif/sans pairing (Novarese + Söhne), minimal monochrome palette with black text. Large display typography for headings. Pill-shaped buttons with subtle shadows. Clean, editorial food photography aesthetic."
+  },
+  "colors": {
+    "cssVariables": {
+      "--background": "var(--color-zinc-50)",
+      "--foreground": "var(--color-zinc-900)",
+      "--card": "var(--color-white)",
+      "--card-foreground": "var(--color-zinc-900)",
+      "--popover": "var(--color-white)",
+      "--popover-foreground": "var(--color-zinc-900)",
+      "--border": "var(--color-zinc-200)",
+      "--input": "var(--color-zinc-200)",
+      "--ring": "var(--color-zinc-400)",
+      "--primary": "var(--color-zinc-950)",
+      "--primary-foreground": "var(--color-white)",
+      "--secondary": "var(--color-zinc-100)",
+      "--secondary-foreground": "var(--color-zinc-900)",
+      "--muted": "var(--color-zinc-100)",
+      "--muted-foreground": "var(--color-zinc-500)",
+      "--accent": "var(--color-zinc-100)",
+      "--accent-foreground": "var(--color-zinc-900)",
+      "--destructive": "var(--color-red-600)",
+      "--success": "var(--color-emerald-600)",
+      "--success-foreground": "var(--color-white)",
+      "--warning": "var(--color-amber-500)",
+      "--warning-foreground": "var(--color-zinc-950)",
+      "--info": "var(--color-sky-600)",
+      "--info-foreground": "var(--color-white)"
+    },
+    "palette": [
+      { "value": "#000000", "count": 258, "role": "text-primary" },
+      { "value": "#ffffff", "count": 2, "role": "white" },
+      { "value": "#f7f7f4", "count": 1, "role": "background-primary" }
+    ],
+    "semantic": {
+      "backgrounds": [
+        { "value": "#f7f7f4", "count": 1 },
+        { "value": "#ffffff", "count": 1 }
+      ],
+      "text": [
+        { "value": "#000000", "count": 258 },
+        { "value": "#ffffff", "count": 1 }
+      ],
+      "borders": [],
+      "accents": []
+    }
+  },
+  "typography": {
+    "fontFamilies": [
+      { "family": "sohne", "weight": "400", "style": "normal", "role": "primary-sans" },
+      { "family": "novarese", "weight": "400", "style": "normal", "role": "serif-display" }
+    ],
+    "scale": ["13px", "14px", "16px", "24px", "192px"],
+    "fontWeights": ["400"],
+    "lineHeights": [
+      { "value": "24px", "count": 402 },
+      { "value": "20px", "count": 43 },
+      { "value": "32px", "count": 3 },
+      { "value": "16px", "count": 2 },
+      { "value": "192px", "count": 1 }
+    ],
+    "letterSpacing": [
+      { "value": "-0.6px", "count": 3 },
+      { "value": "-4.8px", "count": 1, "note": "display-tight" }
+    ],
+    "pairings": [
+      { "heading": "novarese", "body": "sohne", "type": "contrast" }
+    ]
+  },
+  "spacing": {
+    "scale": ["4px", "8px", "10px", "12px", "14px", "16px", "24px", "32px", "40px"],
+    "grid": "8px",
+    "gaps": [
+      { "value": "8px", "count": 5 },
+      { "value": "10px", "count": 1 },
+      { "value": "12px", "count": 1 }
+    ],
+    "paddings": [
+      { "value": "16px", "count": 58 },
+      { "value": "32px", "count": 42 },
+      { "value": "12px", "count": 4 },
+      { "value": "24px", "count": 3 },
+      { "value": "14px", "count": 2 },
+      { "value": "4px", "count": 1 }
+    ]
+  },
+  "animations": {
+    "keyframes": {
+      "spin": "100%: rotate(360deg)",
+      "ping": "75%, 100%: opacity 0, scale(2)",
+      "pulse": "50%: opacity 0.5",
+      "hide": "0%: opacity 1 → 100%: opacity 0",
+      "slideDownAndFade": "0%: opacity 0, translateY(-6px) → 100%: opacity 1, translateY(0)",
+      "slideUpAndFade": "0%: opacity 0, translateY(6px) → 100%: opacity 1, translateY(0)",
+      "dialogOverlayShow": "0%: opacity 0 → 100%: opacity 1",
+      "shimmer": "100%: translate(100%)"
+    },
+    "transitions": [
+      { "value": "all", "count": 373 },
+      { "value": "opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)", "count": 36 }
+    ],
+    "durations": ["0.15s", "0.3s"],
+    "easings": [
+      "cubic-bezier(0.42, 0, 0.58, 1)",
+      "cubic-bezier(0.25, 0.1, 0.25, 1)"
+    ]
+  },
+  "components": {
+    "buttons": [
+      {
+        "variant": "secondary",
+        "text": "Log In",
+        "backgroundColor": null,
+        "textColor": "#000000",
+        "borderRadius": "9999px",
+        "padding": "0px 12px",
+        "fontSize": "13px",
+        "fontWeight": "400"
+      },
+      {
+        "variant": "primary",
+        "text": "Join Waitlist",
+        "backgroundColor": "#000000",
+        "textColor": "#ffffff",
+        "borderRadius": "9999px",
+        "padding": "0px 12px",
+        "fontSize": "13px",
+        "fontWeight": "400"
+      },
+      {
+        "variant": "menu",
+        "text": "Sections",
+        "backgroundColor": null,
+        "textColor": "#000000",
+        "borderRadius": "9999px",
+        "padding": "0px 14px",
+        "fontSize": "14px",
+        "fontWeight": "400"
+      }
+    ],
+    "inputs": [],
+    "cards": []
+  },
+  "shadows": [
+    { "value": "rgba(0, 0, 0, 0.02) 0px 1px 2px 0px", "count": 36, "role": "elevation-subtle" }
+  ],
+  "borderRadius": [
+    { "value": "16px", "count": 36, "role": "card" },
+    { "value": "9999px", "count": 5, "role": "pill" }
+  ],
+  "breakpoints": {
+    "detected": [],
+    "containerWidths": [320, 1536]
+  },
+  "icons": {
+    "library": null,
+    "note": "Custom SVG icons"
+  }
+}
