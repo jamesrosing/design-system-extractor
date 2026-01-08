@@ -1,22 +1,12 @@
 # CLAUDE.md
 
-Project context for Claude Code when working with this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
 
-**Impression** is a Claude Code skill that extracts design systems from live websites using Playwright browser automation. It outputs structured JSON, generates Tailwind configs or CSS variables, compares projects against reference designs using perceptually accurate color matching (CIE ΔE 2000), and creates prioritized implementation plans.
+**Impression** is a Claude Code skill/plugin that extracts design systems from live websites using Playwright browser automation. It outputs structured JSON, and can generate Tailwind configs or CSS variables. It also compares existing projects against extracted reference designs and generates implementation plans.
 
-**Zero dependencies** — vanilla Node.js scripts, no package.json, no build step.
-
-## Quick Reference
-
-| Script | Purpose | Key Function |
-|--------|---------|--------------|
-| `extract-design-system.js` | Browser injection | `extractDesignSystem()` |
-| `compare-design-systems.js` | Project diff | `compareDesignSystems(projectPath, refPath)` |
-| `implement-design-changes.js` | Plan generator | `generateImplementationPlan()`, `executePlan()` |
-| `generate-tailwind-config.js` | JSON→Tailwind | `generateTailwindConfig(json)` |
-| `generate-css-variables.js` | JSON→CSS | `generateCSSVariables(json)` |
+**No dependencies** - vanilla Node.js scripts, no package.json, no build step.
 
 ## Commands
 
@@ -32,6 +22,30 @@ node scripts/generate-tailwind-config.js <design-system.json> [output.js]
 
 # Generate CSS variables from extracted JSON
 node scripts/generate-css-variables.js <design-system.json> [output.css]
+
+# Generate shadcn/ui theme
+node scripts/generate-shadcn-theme.js <design-system.json> [--format=css|json]
+
+# Generate W3C Design Tokens
+node scripts/generate-w3c-tokens.js <design-system.json> [--format=w3c|sd]
+
+# Generate Figma Variables
+node scripts/generate-figma-tokens.js <design-system.json> [--format=figma|tokens-studio]
+
+# Blend multiple design systems
+node scripts/blend-design-systems.js <system1.json> <system2.json> [--weights=60,40]
+
+# Migrate between token formats
+node scripts/migrate-tokens.js <input> --from=<format> --to=<format> [output]
+
+# CI comparison with exit codes
+node scripts/ci-compare.js <project-path> <reference.json> [--format=github|gitlab|json]
+
+# Generate screenshot capture plan
+node scripts/capture-screenshots.js <url> [output-dir]
+
+# Run tests
+node tests/test-core.js
 ```
 
 ## Live Extraction Workflow
@@ -57,68 +71,69 @@ const result = await browser_run_code({
   }`
 });
 
-// 5. Save result to examples/extracted/{site}.json
+// 5. Save result to references/{site}.json
 ```
 
-## Architecture
+## Scripts
 
-```
-scripts/
-├── extract-design-system.js      # Browser-injectable, walks DOM, extracts computed styles
-├── compare-design-systems.js     # CIE ΔE 2000 color matching, exports { compareDesignSystems, deltaE, normalizeColor }
-├── implement-design-changes.js   # Creates feature branch, P0-P4 priority commits
-├── generate-tailwind-config.js   # Transforms JSON to Tailwind theme.extend
-└── generate-css-variables.js     # Transforms JSON to :root CSS custom properties
-```
-
-### Key Algorithms
-
-- **Color Comparison**: RGB → XYZ → LAB → CIE ΔE 2000 (ΔE < 5 = perceptually similar)
-- **Project Detection**: Checks for `tailwind.config.{js,ts,mjs,cjs}`, then CSS files
-- **Priority System**: P0 (colors) → P1 (typography) → P2 (spacing) → P3 (border-radius) → P4 (animations)
+| Script | Purpose | Key Exports |
+|--------|---------|-------------|
+| `extract-design-system.js` | Browser injection script; walks DOM, extracts CSS vars, computed styles, keyframes | `extractDesignSystem()` |
+| `compare-design-systems.js` | Compares project to reference JSON using CIE ΔE 2000 color matching (ΔE < 5 = similar) | `compareDesignSystems()`, `deltaE2000()`, `getContrastRatio()` |
+| `implement-design-changes.js` | Generates prioritized plan (P0: colors → P4: animations), creates feature branch, modifies configs | `generateImplementationPlan()`, `executePlan()`, `modifyTailwindConfig()` |
+| `generate-tailwind-config.js` | JSON → Tailwind config | `generateTailwindConfig()` |
+| `generate-css-variables.js` | JSON → CSS custom properties | `generateCSSVariables()` |
+| `generate-shadcn-theme.js` | JSON → shadcn/ui HSL format | `mapToShadcnTheme()`, `generateCSS()` |
+| `generate-w3c-tokens.js` | JSON → W3C Design Tokens or Style Dictionary | `generateW3CTokens()`, `generateStyleDictionary()` |
+| `generate-figma-tokens.js` | JSON → Figma Variables API format | `generateFigmaVariables()`, `generateTokensStudio()` |
+| `blend-design-systems.js` | Merge multiple design systems | `blendDesignSystems()`, `dedupeColors()` |
+| `migrate-tokens.js` | Convert between token formats | `migrateTokens()`, `detectFormat()` |
+| `capture-screenshots.js` | Generate screenshot capture plans | `generateCapturePlan()`, `generateComparisonReport()` |
+| `ci-compare.js` | CI/CD integration with exit codes | `runCIComparison()`, `generateGitHubAnnotations()` |
 
 ## Pre-Extracted References
 
-Located in `examples/extracted/`:
+`references/` contains ready-to-use design systems:
+- `duchateau.json` - Luxury/editorial aesthetic
+- `linear.json` - Dark-mode SaaS, Inter Variable, indigo accent
+- `vercel.json` - Developer platform, Geist font, blue accent
+- `sorrel.json` - Light-mode cooking app, Söhne + Novarese, cream background
 
-| File | Design Character |
-|------|------------------|
-| `duchateau.json` | Luxury editorial, serif typography, warm neutrals |
-| `linear.json` | Dark-mode SaaS, Inter Variable, indigo accent (#5e6ad2), Berkeley Mono |
-| `vercel.json` | Light-mode developer platform, Geist font, blue accent (#0070f3) |
+## Token Format Support
 
-## Extracted JSON Schema
+| Format | Read | Write | Script |
+|--------|------|-------|--------|
+| Impression JSON | ✓ | ✓ | Native |
+| W3C Design Tokens | ✓ | ✓ | `generate-w3c-tokens.js`, `migrate-tokens.js` |
+| Style Dictionary | ✓ | ✓ | `generate-w3c-tokens.js --format=sd` |
+| Figma Variables | ✓ | ✓ | `generate-figma-tokens.js` |
+| Tokens Studio | ✓ | ✓ | `generate-figma-tokens.js --format=tokens-studio` |
+| Tailwind CSS | ✓ | ✓ | `generate-tailwind-config.js`, `migrate-tokens.js` |
+| CSS Variables | ✓ | ✓ | `generate-css-variables.js`, `migrate-tokens.js` |
+| shadcn/ui | ✓ | ✓ | `generate-shadcn-theme.js` |
 
-```yaml
-meta: { url, title, extractedAt, viewport, designCharacter }
-colors:
-  cssVariables: { --var-name: value }
-  palette: [{ value, count, role? }]
-  semantic: { backgrounds, text, borders, accents }
-typography:
-  fontFamilies: [{ family, weight, style, role? }]
-  scale: ["12px", "14px", ...]
-  fontWeights, lineHeights, letterSpacing
-spacing: { scale, paddings, margins, gaps }
-animations: { keyframes, transitions, durations, easings }
-borderRadius, shadows: [{ value, count, role? }]
-breakpoints: { detected, containerWidths }
-components: { buttons, inputs }
-icons: { library }
-```
+## Key Algorithms
+
+- **Color Comparison**: RGB → XYZ → LAB → CIE ΔE 2000 (ΔE < 5 = perceptually similar)
+- **Accessibility**: WCAG 2.1 contrast ratio calculation (AAA: ≥7:1, AA: ≥4.5:1)
+- **Color Blending**: Weighted RGB interpolation with deduplication by color distance
+- **Project Detection**: Checks for `tailwind.config.{js,ts,mjs,cjs}`, then CSS files
+- **Priority System**: P0 (colors) → P1 (typography) → P2 (spacing) → P3 (border-radius) → P4 (animations)
 
 ## File Purposes
 
-| File | Purpose |
-|------|---------|
-| `SKILL.md` | Instructions Claude receives when skill is invoked |
-| `README.md` | User-facing documentation |
-| `CLAUDE.md` | This file — project context for Claude Code |
-| `marketplace.json` | Plugin metadata for Claude Code marketplace |
+- `SKILL.md` - Instructions Claude receives when skill is invoked (edit for behavior changes)
+- `README.md` - User-facing documentation
+- `CLAUDE.md` - This file — project context for Claude Code
+- `marketplace.json` - Plugin metadata for Claude Code marketplace
+- `types.d.ts` - TypeScript definitions for all types
+- `assets/style-guide-schema.json` - JSON Schema for validation
+- `assets/design-system-starter.json` - Starter template
 
 ## Development Notes
 
 - All scripts use `require.main === module` pattern for CLI + programmatic use
 - Exports are at bottom of each file via `module.exports`
 - No external dependencies — uses only Node.js built-ins (`fs`, `path`, `child_process`)
-- Color normalization handles hex (3/6 digit), rgb(), rgba(), and named colors
+- Color normalization handles hex (3/6 digit), rgb(), rgba(), hsl(), and named colors
+- Run `node tests/test-core.js` to verify all functionality

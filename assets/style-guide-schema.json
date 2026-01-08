@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://github.com/jamesrosing/impression/templates/style-guide-schema.json",
+  "$id": "https://github.com/jamesrosing/impression/assets/style-guide-schema.json",
   "title": "Impression Design System Schema",
   "description": "JSON Schema for extracted design systems from Impression",
   "version": "2.0.0",

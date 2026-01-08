@@ -9,7 +9,7 @@
  *
  * Usage:
  *   node compare-design-systems.js <project-path> <reference.json> [output.md]
- *   node compare-design-systems.js /path/to/project examples/extracted/duchateau.json
+ *   node compare-design-systems.js /path/to/project references/duchateau.json
  *
  * Auto-detects: Tailwind config, CSS variables, CSS files
  * Outputs: Markdown comparison report with similarity scores and accessibility audit
@@ -908,8 +908,8 @@ if (require.main === module) {
     console.error('Usage: node compare-design-systems.js <project-path> <reference.json> [output.md]');
     console.error('');
     console.error('Example:');
-    console.error('  node compare-design-systems.js ./my-project examples/extracted/duchateau.json');
-    console.error('  node compare-design-systems.js ./my-project examples/extracted/duchateau.json comparison-report.md');
+    console.error('  node compare-design-systems.js ./my-project references/duchateau.json');
+    console.error('  node compare-design-systems.js ./my-project references/duchateau.json comparison-report.md');
     process.exit(1);
   }
 

@@ -4,7 +4,7 @@
  * 
  * Usage:
  *   node generate-tailwind-config.js <input.json> [output.js]
- *   node generate-tailwind-config.js examples/extracted/duchateau.json
+ *   node generate-tailwind-config.js references/duchateau.json
  * 
  * If no output file specified, prints to stdout.
  */

@@ -5,7 +5,7 @@
  *
  * Usage:
  *   node implement-design-changes.js <project-path> <reference.json> [--dry-run] [--no-commit]
- *   node implement-design-changes.js ./my-project examples/extracted/duchateau.json
+ *   node implement-design-changes.js ./my-project references/duchateau.json
  *
  * Creates: feature/design-system-alignment branch with actual file modifications
  *
@@ -784,13 +784,13 @@ Options:
 
 Examples:
   # Preview what would change
-  node implement-design-changes.js ./my-project examples/extracted/linear.json --dry-run
+  node implement-design-changes.js ./my-project references/linear.json --dry-run
 
   # Apply changes with commits
-  node implement-design-changes.js ./my-project examples/extracted/linear.json
+  node implement-design-changes.js ./my-project references/linear.json
 
   # Apply changes without git commits
-  node implement-design-changes.js ./my-project examples/extracted/linear.json --no-commit
+  node implement-design-changes.js ./my-project references/linear.json --no-commit
 `);
     process.exit(1);
   }

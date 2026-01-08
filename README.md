@@ -71,10 +71,10 @@ Convert the Linear design to W3C tokens format
 
 ```bash
 # Generate comparison report (prints to stdout)
-node scripts/compare-design-systems.js ./my-project examples/extracted/duchateau.json
+node scripts/compare-design-systems.js ./my-project references/duchateau.json
 
 # Save to file
-node scripts/compare-design-systems.js ./my-project examples/extracted/duchateau.json comparison.md
+node scripts/compare-design-systems.js ./my-project references/duchateau.json comparison.md
 ```
 
 **Output includes:**
@@ -88,10 +88,10 @@ node scripts/compare-design-systems.js ./my-project examples/extracted/duchateau
 
 ```bash
 # Preview changes (dry run)
-node scripts/implement-design-changes.js ./my-project examples/extracted/duchateau.json --dry-run
+node scripts/implement-design-changes.js ./my-project references/duchateau.json --dry-run
 
 # Generate plan and create feature branch
-node scripts/implement-design-changes.js ./my-project examples/extracted/duchateau.json
+node scripts/implement-design-changes.js ./my-project references/duchateau.json
 ```
 
 **Creates:**
@@ -104,22 +104,22 @@ node scripts/implement-design-changes.js ./my-project examples/extracted/duchate
 
 ```bash
 # Tailwind config
-node scripts/generate-tailwind-config.js examples/extracted/duchateau.json tailwind.config.js
+node scripts/generate-tailwind-config.js references/duchateau.json tailwind.config.js
 
 # CSS variables
-node scripts/generate-css-variables.js examples/extracted/duchateau.json variables.css
+node scripts/generate-css-variables.js references/duchateau.json variables.css
 
 # shadcn/ui theme
-node scripts/generate-shadcn-theme.js examples/extracted/linear.json --format=css
+node scripts/generate-shadcn-theme.js references/linear.json --format=css
 
 # W3C Design Tokens
-node scripts/generate-w3c-tokens.js examples/extracted/linear.json tokens.json
+node scripts/generate-w3c-tokens.js references/linear.json tokens.json
 
 # Figma Variables
-node scripts/generate-figma-tokens.js examples/extracted/vercel.json --format=figma
+node scripts/generate-figma-tokens.js references/vercel.json --format=figma
 
 # Style Dictionary
-node scripts/generate-w3c-tokens.js examples/extracted/linear.json --format=sd
+node scripts/generate-w3c-tokens.js references/linear.json --format=sd
 ```
 
 ### Blend Design Systems
@@ -177,10 +177,10 @@ Skip live extraction for these popular designs:
 
 | Site | File | Character |
 |------|------|-----------|
-| DuChateau | `examples/extracted/duchateau.json` | Luxury editorial, serif typography, warm neutrals |
-| Linear | `examples/extracted/linear.json` | Dark-mode SaaS, Inter Variable, indigo accent (#5e6ad2) |
-| Vercel | `examples/extracted/vercel.json` | Light-mode developer platform, Geist font, blue accent (#0070f3) |
-| Sorrel | `examples/extracted/sorrel.json` | Light-mode cooking app, Söhne + Novarese, cream background |
+| DuChateau | `references/duchateau.json` | Luxury editorial, serif typography, warm neutrals |
+| Linear | `references/linear.json` | Dark-mode SaaS, Inter Variable, indigo accent (#5e6ad2) |
+| Vercel | `references/vercel.json` | Light-mode developer platform, Geist font, blue accent (#0070f3) |
+| Sorrel | `references/sorrel.json` | Light-mode cooking app, Söhne + Novarese, cream background |
 
 ## What Gets Extracted
 
@@ -241,18 +241,15 @@ impression/
 │   ├── migrate-tokens.js             # Convert between formats
 │   ├── capture-screenshots.js        # Before/after screenshots
 │   └── ci-compare.js                 # CI/CD integration
-├── templates/
-│   ├── style-guide-schema.json       # JSON Schema for validation
-│   └── design-system-starter.json    # Starter template
-├── examples/
-│   ├── extracted/              # Pre-extracted reference designs
-│   │   ├── duchateau.json
-│   │   ├── linear.json
-│   │   ├── vercel.json
-│   │   └── sorrel.json
-│   └── generated/              # Example generated configs
-└── tests/
-    └── test-core.js            # Test suite
+├── references/                 # Pre-extracted design systems
+│   ├── duchateau.json
+│   ├── linear.json
+│   ├── vercel.json
+│   └── sorrel.json
+└── assets/
+    ├── style-guide-schema.json       # JSON Schema for validation
+    ├── design-system-starter.json    # Starter template
+    └── examples/               # Example generated configs
 ```
 
 ## TypeScript Support

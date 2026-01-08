@@ -5,7 +5,7 @@
  *
  * Usage:
  *   node generate-figma-tokens.js <design-system.json> [output.json]
- *   node generate-figma-tokens.js examples/extracted/linear.json figma-tokens.json
+ *   node generate-figma-tokens.js references/linear.json figma-tokens.json
  *
  * Formats supported:
  *   --format=figma    Figma Variables API format (default)
@@ -531,13 +531,13 @@ Options:
 
 Examples:
   # Generate Figma Variables format
-  node generate-figma-tokens.js examples/extracted/linear.json
+  node generate-figma-tokens.js references/linear.json
 
   # Generate Tokens Studio format
-  node generate-figma-tokens.js examples/extracted/linear.json --format=tokens
+  node generate-figma-tokens.js references/linear.json --format=tokens
 
   # Save to file
-  node generate-figma-tokens.js examples/extracted/linear.json figma-tokens.json
+  node generate-figma-tokens.js references/linear.json figma-tokens.json
 `);
     process.exit(1);
   }

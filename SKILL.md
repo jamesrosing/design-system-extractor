@@ -1,25 +1,24 @@
 ---
 name: impression
-description: Extract design systems from live websites, compare against existing projects, and generate implementation plans. Scrapes colors, typography, spacing, animations, and component patterns from any URL.
+description: |
+  Extract complete design systems from live websites, compare against existing projects, and generate implementation plans with atomic commits. Use this skill when the user wants to:
+
+  **Extraction triggers:** "scrape styles", "extract design", "grab the CSS", "get the design system", "reverse-engineer the styling", "pull the theme from", "what fonts/colors does [site] use", "analyze the design of", "extract from URL"
+
+  **Comparison triggers:** "compare my styles", "how close is my design to", "match [reference] design", "align with [brand] styling", "design system diff", "design alignment", "style comparison"
+
+  **Generation triggers:** "generate tailwind config", "create CSS variables", "convert to tailwind", "implementation plan", "apply [site] design", "generate shadcn theme", "export to figma", "W3C tokens", "style dictionary"
+
+  **Blending/Migration triggers:** "blend design systems", "merge styles", "combine designs", "migrate tokens", "convert tokens", "token format"
+
+  **Pre-extracted references:** Linear design, Vercel design, DuChateau design, Sorrel design
+
+  Outputs JSON, Tailwind config, CSS variables, shadcn/ui themes, W3C Design Tokens, Figma Variables, or Style Dictionary format. Compares using CIE ΔE 2000 perceptual color matching with WCAG accessibility audits.
 ---
 
 # Impression
 
 Extract, compare, and implement design systems from any website.
-
-## Triggers
-
-Activate this skill when the user mentions:
-
-**Direct:** "impression skill", "use impression"
-
-**Extraction:** "scrape styles", "extract design", "grab the CSS", "get the design system", "reverse-engineer the styling", "pull the theme from", "what fonts/colors does [site] use", "analyze the design of"
-
-**Comparison:** "compare my styles", "how close is my design to", "match [reference] design", "align with [brand] styling", "design system diff", "how different is my project from"
-
-**Generation:** "generate tailwind config", "create CSS variables", "convert to tailwind", "implementation plan for design", "apply [site] design to my project"
-
-**References:** "Linear design", "Vercel design", "DuChateau design" (pre-extracted systems available)
 
 ## Quick Start
 
@@ -35,7 +34,13 @@ Compare my project at /path/to/project against the Linear design system
 
 **Generate implementation plan:**
 ```
-Create a feature branch to align my project with the Stripe dashboard design
+Create a feature branch to align my project with the DuChateau design
+```
+
+**Generate token formats:**
+```
+Generate a shadcn theme from the Vercel design system
+Convert the Linear design to W3C tokens format
 ```
 
 ## Workflow 1: Extract Design System from URL
@@ -44,7 +49,7 @@ Create a feature branch to align my project with the Stripe dashboard design
 
 1. Navigate to target URL:
    ```javascript
-   await browser_navigate(url);
+   await browser_navigate({ url: 'https://example.com' });
    ```
 
 2. Wait for full page load (fonts, animations):
@@ -54,14 +59,9 @@ Create a feature branch to align my project with the Stripe dashboard design
 
 3. Capture multiple viewports for responsive patterns:
    ```javascript
-   // Desktop
    await browser_resize({ width: 1920, height: 1080 });
    await browser_take_screenshot({ filename: 'desktop.png' });
-   
-   // Tablet
    await browser_resize({ width: 768, height: 1024 });
-   
-   // Mobile
    await browser_resize({ width: 375, height: 667 });
    ```
 
@@ -76,64 +76,35 @@ Create a feature branch to align my project with the Stripe dashboard design
    });
    ```
 
-5. Save extracted data to JSON following the schema in `templates/style-guide-schema.json`
+5. Save extracted data to JSON following the schema in `assets/style-guide-schema.json`
 
 ### Output Files
 
 - `{site-name}-design-system.json` - Complete extracted tokens
-- `{site-name}-tailwind.config.js` - Generated Tailwind configuration (optional)
-- `{site-name}-variables.css` - CSS custom properties (optional)
+- Optional: Tailwind config, CSS variables, shadcn theme, W3C tokens, Figma variables
 
 ## Workflow 2: Compare Project Against Style Guide
 
 ### Quick Start
 
 ```bash
-node scripts/compare-design-systems.js /path/to/project examples/extracted/duchateau.json
-node scripts/compare-design-systems.js /path/to/project examples/extracted/duchateau.json comparison-report.md
+node scripts/compare-design-systems.js /path/to/project references/duchateau.json
+node scripts/compare-design-systems.js /path/to/project references/duchateau.json comparison.md
 ```
-
-### Process
-
-The comparison script automatically:
-
-1. **Detects project type** (Tailwind, CSS variables, CSS-in-JS)
-2. **Extracts current styles** from config files
-3. **Runs diff algorithms** for each category
-4. **Generates markdown report** with scores and recommendations
 
 ### Comparison Algorithms
 
 | Category | Algorithm | Match Criteria |
 |----------|-----------|----------------|
 | Colors | CIE ΔE 2000 | Exact: ΔE = 0, Similar: ΔE < 5, Different: ΔE ≥ 5 |
+| Contrast | WCAG 2.1 | AAA: ≥7:1, AA: ≥4.5:1, AA-large: ≥3:1 |
 | Typography | Fuzzy string match | Font family name contains/contained by reference |
 | Spacing | Numeric diff | Exact: 0px diff, Close: ≤2px diff |
 | Border Radius | Exact match | Pixel value equality |
 
-### Output Report Structure
+### Output
 
-```markdown
-# Design System Comparison Report
-
-## Overall Alignment Score: 72%
-
-| Category | Score | Status |
-|----------|-------|--------|
-| Colors | 85% | ✅ |
-| Typography | 50% | ⚠️ |
-| Spacing | 70% | ⚠️ |
-| Border Radius | 100% | ✅ |
-
-## Colors (85%)
-### ✅ Exact Matches (8)
-### ⚠️ Similar Colors (3)
-### ❌ Missing from Project (2)
-
-## Recommendations
-1. **Install missing fonts** - Add: beaufort-pro, ABC Social Condensed
-2. **Align spacing scale** - Consider adopting: 5px, 8px, 10px
-```
+Report includes overall alignment score, per-category scores, WCAG accessibility audit, and actionable recommendations.
 
 ## Workflow 3: Implement Design Changes
 
@@ -141,136 +112,112 @@ The comparison script automatically:
 
 ```bash
 # Preview what would change
-node scripts/implement-design-changes.js /path/to/project examples/extracted/duchateau.json --dry-run
+node scripts/implement-design-changes.js /path/to/project references/duchateau.json --dry-run
 
-# Execute (creates branch and generates plan)
-node scripts/implement-design-changes.js /path/to/project examples/extracted/duchateau.json
+# Execute (creates branch, modifies configs, generates plan)
+node scripts/implement-design-changes.js /path/to/project references/duchateau.json
 ```
 
 ### Process
 
-The implementation script:
-
-1. **Runs comparison** to identify gaps
-2. **Detects config files** (tailwind.config.js or CSS variables file)
-3. **Generates prioritized tokens** for each category
-4. **Creates feature branch** `feature/design-system-alignment`
-5. **Outputs implementation plan** with exact tokens to add
+1. Runs comparison to identify gaps
+2. Detects config files (tailwind.config.js or CSS variables)
+3. Generates prioritized tokens
+4. Creates feature branch `feature/design-system-alignment`
+5. **Modifies config files directly** with backup
+6. Outputs implementation plan
 
 ### Priority Order
 
 | Priority | Category | Description |
 |----------|----------|-------------|
-| P0 | Colors | Design tokens foundation (backgrounds, text, borders, accents) |
+| P0 | Colors | Design tokens foundation |
 | P1 | Typography | Font families, size scale, weights |
 | P2 | Spacing | Spacing scale values |
 | P3 | Border Radius | Corner radius tokens |
 | P4 | Animations | Durations and easing functions |
 
-### Output: DESIGN_IMPLEMENTATION_PLAN.md
-
-```markdown
-# Implementation Plan
-
-**Branch:** `feature/design-system-alignment`
-**Commits:** 5
-
-## Execution Order
-
-### P0: colors
-**Commit:** `design: add color tokens from reference system`
-**File:** `tailwind.config.js`
-**Tokens:**
-```
-colors: {
-  'primary': '#000000',
-  'background': '#ffffff',
-  'accent': '#cc3366'
-}
-```
-
-## Git Commands
-```bash
-git checkout -b feature/design-system-alignment
-# Edit tailwind.config.js with tokens above
-git add tailwind.config.js
-git commit -m "design: add color tokens from reference system"
-```
-```
-
-### Atomic Commits
-
-Each category gets its own commit for clean history:
+## Workflow 4: Generate Token Formats
 
 ```bash
-git log --oneline
-# a1b2c3d design: add animation/transition tokens
-# d4e5f6g design: align border radius tokens  
-# g7h8i9j design: update spacing scale
-# j1k2l3m design: align typography with reference system
-# m4n5o6p design: add color tokens from reference system
-```
-
-### Programmatic Usage
-
-```javascript
-const { generateImplementationPlan, executePlan } = require('./scripts/implement-design-changes');
-const { compareDesignSystems } = require('./scripts/compare-design-systems');
-
-const { comparisons } = compareDesignSystems(projectPath, referencePath);
-const reference = JSON.parse(fs.readFileSync(referencePath));
-const configs = { tailwind: 'tailwind.config.js' };
-
-const plan = generateImplementationPlan(projectPath, reference, comparisons, configs);
-const results = executePlan(projectPath, plan, true); // dry-run
-```
-
-## Workflow 4: Generate Implementation Files
-
-After extracting a design system, generate ready-to-use config files:
-
-```bash
-# Extract from live site
-# (use Playwright extraction workflow)
-
-# Generate Tailwind config
+# Tailwind config
 node scripts/generate-tailwind-config.js site-design.json tailwind.config.js
 
-# Generate CSS variables
-node scripts/generate-css-variables.js site-design.json src/styles/variables.css
+# CSS variables
+node scripts/generate-css-variables.js site-design.json variables.css
 
-# Or use pre-extracted reference
-node scripts/generate-tailwind-config.js examples/extracted/duchateau.json
+# shadcn/ui theme (HSL format)
+node scripts/generate-shadcn-theme.js site-design.json --format=css
+
+# W3C Design Tokens
+node scripts/generate-w3c-tokens.js site-design.json tokens.json
+
+# Figma Variables
+node scripts/generate-figma-tokens.js site-design.json --format=figma
+
+# Style Dictionary
+node scripts/generate-w3c-tokens.js site-design.json --format=sd
 ```
 
-For Claude to execute in a project:
+## Workflow 5: Blend Design Systems
 
-```
-Generate a Tailwind config from the DuChateau design system and apply it to my project
+Merge multiple design systems into a hybrid:
+
+```bash
+# Equal blend
+node scripts/blend-design-systems.js linear.json vercel.json blended.json
+
+# Weighted blend (60% Linear, 40% Vercel)
+node scripts/blend-design-systems.js linear.json vercel.json --weights=60,40
+
+# Prefer first system, fill gaps from others
+node scripts/blend-design-systems.js linear.json vercel.json --strategy=prefer
 ```
 
-Claude will:
-1. Read `examples/extracted/duchateau.json`
-2. Run `generate-tailwind-config.js` 
-3. Merge with existing `tailwind.config.js` or create new
-4. Update any conflicting theme values
+## Workflow 6: Migrate Between Formats
+
+Convert tokens between different standards:
+
+```bash
+# Impression to W3C
+node scripts/migrate-tokens.js design.json --from=impression --to=w3c
+
+# W3C to Tailwind
+node scripts/migrate-tokens.js tokens.json --from=w3c --to=tailwind
+
+# Figma to CSS
+node scripts/migrate-tokens.js figma.json --from=figma --to=css
+```
+
+Supported formats: `impression`, `w3c`, `sd` (Style Dictionary), `figma`, `tailwind`, `css`, `shadcn`
+
+## Workflow 7: CI/CD Integration
+
+```bash
+# GitHub Actions format
+node scripts/ci-compare.js . ./reference.json --format=github
+
+# GitLab CI format
+node scripts/ci-compare.js . ./reference.json --format=gitlab --threshold=90
+```
+
+Exit codes: 0 = pass, 1 = critical issues, 2 = warnings
 
 ## Pre-Extracted References
 
-Skip live extraction for commonly referenced designs:
-
 | Design System | File | Notes |
 |--------------|------|-------|
-| DuChateau | `examples/extracted/duchateau.json` | Luxury/editorial, serif typography, warm neutrals |
-| Linear | `examples/extracted/linear.json` | Dark-mode SaaS, Inter Variable, indigo accent |
-| Vercel | `examples/extracted/vercel.json` | Developer platform, Geist font, blue accent |
+| DuChateau | `references/duchateau.json` | Luxury editorial, serif typography, warm neutrals |
+| Linear | `references/linear.json` | Dark-mode SaaS, Inter Variable, indigo accent |
+| Vercel | `references/vercel.json` | Developer platform, Geist font, blue accent |
+| Sorrel | `references/sorrel.json` | Light-mode cooking app, Söhne + Novarese, cream |
 
 ## Limitations
 
 - **Cross-origin stylesheets**: May be inaccessible due to CORS
-- **CSS-in-JS runtime styles**: Require page interaction to trigger all states
+- **CSS-in-JS**: Require page interaction to trigger runtime styles
 - **Protected sites**: Some sites block automated access
-- **Dynamic content**: May need to scroll/interact to capture all styles
+- **Dynamic content**: May need scrolling to capture all styles
 
 ### Workarounds
 

@@ -6,7 +6,7 @@
  *
  * Usage:
  *   node generate-w3c-tokens.js <design-system.json> [output.tokens.json]
- *   node generate-w3c-tokens.js examples/extracted/linear.json tokens.json
+ *   node generate-w3c-tokens.js references/linear.json tokens.json
  *
  * @version 1.0.0
  */
@@ -434,13 +434,13 @@ Options:
 
 Examples:
   # Generate W3C format
-  node generate-w3c-tokens.js examples/extracted/linear.json
+  node generate-w3c-tokens.js references/linear.json
 
   # Generate Style Dictionary format
-  node generate-w3c-tokens.js examples/extracted/linear.json --format=sd
+  node generate-w3c-tokens.js references/linear.json --format=sd
 
   # Save to file
-  node generate-w3c-tokens.js examples/extracted/linear.json tokens.json
+  node generate-w3c-tokens.js references/linear.json tokens.json
 
 Specification:
   https://design-tokens.github.io/community-group/format/

@@ -5,7 +5,7 @@
  *
  * Usage:
  *   node generate-shadcn-theme.js <design-system.json> [output.css]
- *   node generate-shadcn-theme.js examples/extracted/linear.json globals.css
+ *   node generate-shadcn-theme.js references/linear.json globals.css
  *
  * Options:
  *   --format=css     CSS custom properties (default)
@@ -429,13 +429,13 @@ Options:
 
 Examples:
   # Generate CSS for shadcn/ui
-  node generate-shadcn-theme.js examples/extracted/linear.json
+  node generate-shadcn-theme.js references/linear.json
 
   # Generate JSON for Tailwind config
-  node generate-shadcn-theme.js examples/extracted/linear.json --format=json
+  node generate-shadcn-theme.js references/linear.json --format=json
 
   # Save to file
-  node generate-shadcn-theme.js examples/extracted/linear.json src/app/globals.css
+  node generate-shadcn-theme.js references/linear.json src/app/globals.css
 `);
     process.exit(1);
   }

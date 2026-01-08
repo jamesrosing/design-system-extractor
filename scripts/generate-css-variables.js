@@ -4,7 +4,7 @@
  * 
  * Usage:
  *   node generate-css-variables.js <input.json> [output.css]
- *   node generate-css-variables.js examples/extracted/duchateau.json
+ *   node generate-css-variables.js references/duchateau.json
  * 
  * If no output file specified, prints to stdout.
  */
